@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="FinnhubServices/FinnhubServices.csproj" Id="35dd8977-fb58-4f1a-b2cb-f01aeb821d4b" />
   <Project Path="StockApp/StockApp.csproj" />
 </Solution>
