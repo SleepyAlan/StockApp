@@ -1,93 +1,85 @@
-﻿@model StockApp.Models.StockViewModel
+﻿@model StockApp.ViewModels.StockBusinessWrapper
 @{
   ViewBag.Title = "Home";
 }
 <div class="container card bg-surface">
-  @if (Model is not null)
-  {
-    <h4 style="color: var(--color-primary)">@Model.Profile?.Name</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td>Current:</td>
-          <td>
-            <small>$</small>
-            <span>@Model.Quote?.CurrentPriceToday</span>
-          </td>
-        </tr>
-        <tr>
-          <td>Change:</td>
-          <td>
-            <small>$</small>
-            <span>@Model.Quote?.Change</span>
-          </td>
-        </tr>
-        <tr>
-          <td>Percent Change:</td>
-          <td>
-            <span>@Model.Quote?.PercentChange %</span>
-          </td>
-        </tr>
-        <tr>
-          <td>Open Price:</td>
-          <td>
-            <small>$</small>
-            <span>@Model.Quote?.OpenPrice</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <h6 style="color: var(--color-primary)">Company Profile</h6>
-    <table>
-      <tbody>
-        <tr>
-          <td>Ticker Symbol:</td>
-          <td>
-            <span>@Model.Profile?.TickerSymbol</span>
-          </td>
-        </tr>
-        <tr>
-          <td>Country:</td>
-          <td>
-            <span>@Model.Profile?.Country</span>
-          </td>
-        </tr>
-        <tr>
-          <td>Currency:</td>
-          <td>
-            <span>@Model.Profile?.Currency</span>
-          </td>
-        </tr>
-        <tr>
-          <td>Exchange:</td>
-          <td>
-            <span>@Model.Profile?.Exchange</span>
-          </td>
-        </tr>
-        <tr>
-          <td>Industry:</td>
-          <td>
-            <span>@Model.Profile?.Industry</span>
-          </td>
-        </tr>
-        <tr>
-          <td>Website Link:</td>
-          <td>
-            <span>@Model.Profile?.WebUrl</span>
-          </td>
-        </tr>
-        <tr>
-          <td>Ipo Date:</td>
-          <td>
-            <span>@Model.Profile?.IpoDate?.ToString("dddd, MMMM dd, yyyy")</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-  }
-  else
-  {
-    <h6 class="alert alert-danger">@ViewBag.Error</h6>
-  }
+  <h4 style="color: var(--color-primary)">@Model.Profile?.Name</h4>
+  <table>
+    <tbody>
+      <tr>
+        <td>Current:</td>
+        <td>
+          <small>$</small>
+          <span>@Model.Quote?.CurrentPriceToday</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Change:</td>
+        <td>
+          <small>$</small>
+          <span>@Model.Quote?.Change</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Percent Change:</td>
+        <td>
+          <span>@Model.Quote?.PercentChange %</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Open Price:</td>
+        <td>
+          <small>$</small>
+          <span>@Model.Quote?.OpenPrice</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h6 style="color: var(--color-primary)">Company Profile</h6>
+  <table>
+    <tbody>
+      <tr>
+        <td>Ticker Symbol:</td>
+        <td>
+          <span>@Model.Profile?.TickerSymbol</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Country:</td>
+        <td>
+          <span>@Model.Profile?.Country</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Currency:</td>
+        <td>
+          <span>@Model.Profile?.Currency</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Exchange:</td>
+        <td>
+          <span>@Model.Profile?.Exchange</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Industry:</td>
+        <td>
+          <span>@Model.Profile?.Industry</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Website Link:</td>
+        <td>
+          <span>@Model.Profile?.WebUrl</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Ipo Date:</td>
+        <td>
+          <span>@Model.Profile?.IpoDate?.ToString("dddd, MMMM dd, yyyy")</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
