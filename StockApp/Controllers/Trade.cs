@@ -12,17 +12,14 @@ namespace StockApp.Controllers;
 public class Trade : Controller
 {
     private readonly string _defaultStockSymbol;
-    private readonly string _finnhubApiKey;
     private readonly IFinnhubService _service;
 
     public Trade(
         IFinnhubService finnhubService,
-        IOptions<TradingOptions> tradeOptions,
-        IOptions<ApiOptions> apiOptions
+        IOptions<TradingOptions> tradeOptions
         )
     {
         _defaultStockSymbol = tradeOptions.Value.DefaultStockSymbol;
-        _finnhubApiKey = apiOptions.Value.ApiKey;
         _service = finnhubService;
     }
 
@@ -50,7 +47,7 @@ public class Trade : Controller
             ViewBag.Error = "Failed to parse data from Finnhub Api. Contact support.";
             return View("Error");
         }
-        ViewBag.ApiKey = _finnhubApiKey;
+
         var viewModel = new StockTrade()
         {
             StockName = profile.Name,
