@@ -1,10 +1,9 @@
-﻿using FinnhubServices.Models.DTOs;
+﻿using FinnhubServices.Models.BusinessModels;
 
 namespace FinnhubServices.Interfaces;
 
-// TODO: RETURN BUSINESS MODELS INSTEAD
-internal interface IFinnHubService
+public interface IFinnhubService
 {
-    Task<StockQuoteDto> GetStockPriceQuote(string symbol);
-    Task<CompanyProfileDto> GetCompanyProfile(string symbol);
+    Task<CurrentStockQuote> GetStockPriceQuote(string symbol);
+    Task<CompanyProfile> GetCompanyProfile(string symbol);
 }
