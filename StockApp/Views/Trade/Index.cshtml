@@ -1,14 +1,20 @@
-﻿@model StockApp.ViewModels.StockTrade?
+﻿@model StockApp.ViewModels.StockTrade
 @{
-  ViewBag.Title = "Home";
+  ViewBag.Title = "Trade";
 }
-<div class="container card">
-  @if (Model is not null)
-  {
-    
-  }
-  else
-  {
-    <h6 class="alert alert-danger">@ViewBag.Error</h6>
-  }
+
+<div class="container card text-start">
+  <div id="stock-symbol" symbol="@Model.StockSymbol" hidden></div>
+  <h3 class="text-primary text">
+    <span id="display-name">@Model.StockName</span>
+    (<span id="display-symbol">@Model.StockSymbol</span>)
+  </h3>
+  <h2>
+    <span class="text-muted">
+      &dollar;
+    </span>
+    <span id="display-price">
+        @Model.Price
+    </span>
+  </h2>
 </div>
