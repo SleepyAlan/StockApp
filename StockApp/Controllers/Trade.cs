@@ -5,7 +5,6 @@ using StockApp.ViewModels;
 using FinnhubServices.Models.BusinessModels;
 using FinnhubServices.Interfaces;
 using System.Text.Json;
-using FinnhubServices.Options;
 
 namespace StockApp.Controllers;
 
