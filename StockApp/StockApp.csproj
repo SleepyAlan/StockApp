@@ -15,4 +15,8 @@
     <ProjectReference Include="..\FinnhubServices\FinnhubServices.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

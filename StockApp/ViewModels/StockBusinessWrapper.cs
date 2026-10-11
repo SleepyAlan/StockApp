@@ -1,8 +1,8 @@
 ﻿using FinnhubServices.Models.BusinessModels;
 
-namespace StockApp.Models;
+namespace StockApp.ViewModels;
 
-public class StockViewModel
+public class StockBusinessWrapper
 {
     public CurrentStockQuote? Quote { get; set; }
     public StockInfo? Info { get; set; }

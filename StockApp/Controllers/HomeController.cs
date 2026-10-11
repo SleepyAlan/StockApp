@@ -1,7 +1,7 @@
 ﻿using FinnhubServices.Interfaces;
 using FinnhubServices.Models.BusinessModels;
 using Microsoft.AspNetCore.Mvc;
-using StockApp.Models;
+using StockApp.ViewModels;
 using System.Text.Json;
 
 namespace StockApp.Controllers;
@@ -33,7 +33,7 @@ public class HomeController(IFinnhubService service) : Controller
             return View();
         }
 
-        var viewModel = new StockViewModel()
+        var viewModel = new StockBusinessWrapper()
         {
             Profile = profile,
             Quote = quote
