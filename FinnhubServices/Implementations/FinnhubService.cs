@@ -11,8 +11,8 @@ public class FinnhubService(
     HttpClient httpClient,
     IOptions<ApiOptions> options) : IFinnhubService
 {
-    private readonly string _quoteUrl = "/api/v1/quote";
-    private readonly string _companyProfileUrl = "/api/v1/stock/profile2";
+    private readonly string _quoteUrl = "api/v1/quote";
+    private readonly string _companyProfileUrl = "api/v1/stock/profile2";
     private readonly string _apiKey = options.Value.ApiKey;
 
     private static readonly JsonSerializerOptions _jsonOptions = new()
@@ -37,13 +37,7 @@ public class FinnhubService(
 
     private async Task<T> GetRequest<T>(string relativeUrl)
     {
-
-        using HttpResponseMessage response = await httpClient.GetAsync(
-            relativeUrl, HttpCompletionOption.ResponseHeadersRead);
-
-        response.EnsureSuccessStatusCode();
-
-        using var stream = await response.Content.ReadAsStreamAsync();
+        using var stream = await httpClient.GetStreamAsync(relativeUrl);
 
         var dto = await JsonSerializer.DeserializeAsync<T>(stream, _jsonOptions);
 
