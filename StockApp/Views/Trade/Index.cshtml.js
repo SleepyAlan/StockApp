@@ -1,37 +1,44 @@
-// Websocket to keep 
-// TODO: proxy websocket... Connect to websocket to backend service, websocket it to here.
+// Websocket for live updates on price
 (function () {
     const hiddenData = document.getElementById("details");
     const stockSymbol = hiddenData.dataset.stockSymbol;
-    const token = hiddenData.dataset.apiToken;
     const displayPrice = document.getElementById("display-price");
 
-    // Exits if either is missing
-    if (!token || !stockSymbol) return;
+    // Exits if missing.
+    if (!stockSymbol) return;
 
-    const socket = new WebSocket(`wss://ws.finnhub.io?token=${token}`);
+    const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
 
-    // Connection opened -> Subscribe
+    const socket = new WebSocket(`${wsScheme}://${window.location.host}/ws/stocks`);
+
+    // Opening connection and subscribing.
     socket.addEventListener('open', function (event) {
         socket.send(JSON.stringify({ 'type': 'subscribe', 'symbol': stockSymbol }));
         console.log(`Subscribed to ${stockSymbol}`);
     });
 
-    // Listen for messages
+    // Listening for messages
     socket.addEventListener('message', function (event) {
         console.log('Message from server ', event.data);
-        if (event.type === "trade") {
-            let price = 0;
-            event.data.forEach(trade => {
-                if (trade.p > price) {
-                    price = trade.p;
-                }
-            });
-            displayPrice.innerText = price;
+
+        try {
+            const response = JSON.parse(event.data);
+
+            if (response.type === "trade" && response.data) {
+                let price = 0;
+                response.data.forEach(trade => {
+                    if (trade.p > price) {
+                        price = trade.p;
+                    }
+                });
+                displayPrice.innerText = price.toFixed(2);
+            }
+        }
+        catch (e) {
+            console.error("Error parsing data: ", e);
         }
     });
 
-    // Unsubscribe
     var unsubscribe = function (symbol) {
         if (socket && socket.readyState === WebSocket.OPEN) {
             socket.send(JSON.stringify({ 'type': 'unsubscribe', 'symbol': symbol }))
