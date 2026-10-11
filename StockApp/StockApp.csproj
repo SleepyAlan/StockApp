@@ -4,6 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>201b5adf-e1b7-4b92-bf99-423f7f1f2ec8</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +15,10 @@
     <Folder Include="Models\" />
     <Folder Include="Controllers\" />
     <Folder Include="Views\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FinnhubServices\FinnhubServices.csproj" />
   </ItemGroup>
 
 </Project>
