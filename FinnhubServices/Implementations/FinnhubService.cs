@@ -45,5 +45,9 @@ public class FinnhubService(
             throw new InvalidOperationException("No response from finnhub server.");
     }
 
+    public string GetApiKey()
+    {
+        return _apiKey;
+    }
 }
 
