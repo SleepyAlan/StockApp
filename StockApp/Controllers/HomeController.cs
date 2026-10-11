@@ -23,14 +23,14 @@ public class HomeController(IFinnhubService service) : Controller
             (ex is HttpRequestException || ex is InvalidOperationException)
         {
             ViewBag.Error = "There has been an error in trying to fetch data from Finnhub Api";
-            return View();
+            return View("Error");
         }
         catch (Exception ex) when
             (ex is JsonException || ex is NotSupportedException ||
              ex is ArgumentNullException || ex is OperationCanceledException)
         {
             ViewBag.Error = "Failed to parse data from Finnhub Api. Contact support.";
-            return View();
+            return View("Error");
         }
 
         var viewModel = new StockBusinessWrapper()
