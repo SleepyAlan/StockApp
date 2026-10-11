@@ -20,10 +20,10 @@ public class Trade : Controller
         _service = finnhubService;
     }
 
-    [Route("trade/index/{symbol?}")]
+    [Route("trade/{symbol?}")]
     public async Task<IActionResult> Index(string? symbol)
     {
-        string stockSymbol = symbol ?? _defaultStockSymbol;
+        string stockSymbol = (symbol ?? _defaultStockSymbol).ToUpper();
         CurrentStockQuote quote;
         CompanyProfile profile;
         try
