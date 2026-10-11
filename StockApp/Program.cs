@@ -1,4 +1,5 @@
 using FinnhubServices.Extensions;
+using StockApp.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,10 @@ if (builder.Environment.IsDevelopment())
     mvcBuilder.AddRazorRuntimeCompilation();
 }
 
-builder.Services.AddFinnHubServices(builder.Configuration);
+builder.Services
+    .AddFinnHubServices(builder.Configuration)
+    .Configure<TradingOptions>(
+        builder.Configuration.GetSection("TradingOptions"));
 
 var app = builder.Build();
 
