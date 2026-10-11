@@ -4,7 +4,6 @@ using Microsoft.Extensions.Options;
 using FinnhubServices.Options;
 using System.Text.Json;
 using FinnhubServices.Models.BusinessModels;
-using System.Net.Http.Json;
 
 namespace FinnhubServices.Implementations;
 
