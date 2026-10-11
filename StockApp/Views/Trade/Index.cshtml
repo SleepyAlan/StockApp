@@ -1,10 +1,11 @@
 ﻿@model StockApp.ViewModels.StockTrade
 @{
   ViewBag.Title = "Trade";
+  var displayPrice = Model.Price.ToString("F2");
 }
 
+<div id="details" data-stock-symbol="@Model.StockSymbol" data-api-token="@ViewBag.ApiKey" hidden></div>
 <div class="container card text-start">
-  <div id="stock-symbol" symbol="@Model.StockSymbol" hidden></div>
   <h3 class="text-primary text">
     <span id="display-name">@Model.StockName</span>
     (<span id="display-symbol">@Model.StockSymbol</span>)
@@ -14,7 +15,11 @@
       &dollar;
     </span>
     <span id="display-price">
-        @Model.Price
+      @displayPrice
     </span>
   </h2>
 </div>
+
+@section Scripts {
+  <script src="~/Views/Trade/Index.cshtml.js"></script>
+}
