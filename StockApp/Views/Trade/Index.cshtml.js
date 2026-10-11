@@ -3,6 +3,7 @@
     const hiddenData = document.getElementById("details");
     const stockSymbol = hiddenData.dataset.stockSymbol;
     const displayPrice = document.getElementById("display-price");
+    const priceArrow = document.getElementById("price-arrow");
 
     // Last known price
     let previousPrice = null;
@@ -55,14 +56,22 @@
         socket.close();
     })
 
-    var flashColorForPriceChange = function (currentPrice, previousPrice) {
+    function flashColorForPriceChange(currentPrice, previousPrice) {
         displayPrice.className = "";
+        priceArrow.className = "";
+
         void displayPrice.offsetWidth; // Forces DOM reflow to retrigger animation
+
         if (currentPrice > previousPrice) {
             displayPrice.classList.add("price-up");
+            priceArrow.classList.add("price-up");
+            priceArrow.innerText = "▲";
         }
-        else {
+        else if (currentPrice < previousPrice) {
             displayPrice.classList.add("price-down");
+            priceArrow.classList.add("price-down");
+            priceArrow.innerText = "▼";
+
         }
     }
 
