@@ -1,0 +1,12 @@
+/* CSS for Trade price going up and down */
+#display-price {
+    transition: color 0.5s ease;
+}
+
+.price-up {
+    color: var(--color-success) !important;
+}
+
+.price-down {
+    color: var(--color-danger) !important;
+}

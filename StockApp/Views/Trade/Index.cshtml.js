@@ -4,6 +4,9 @@
     const stockSymbol = hiddenData.dataset.stockSymbol;
     const displayPrice = document.getElementById("display-price");
 
+    // Last known price
+    let previousPrice = null;
+
     // Exits if missing.
     if (!stockSymbol) return;
 
@@ -24,14 +27,14 @@
         try {
             const response = JSON.parse(event.data);
 
-            if (response.type === "trade" && response.data) {
-                let price = 0;
-                response.data.forEach(trade => {
-                    if (trade.p > price) {
-                        price = trade.p;
-                    }
-                });
-                displayPrice.innerText = price.toFixed(2);
+            if (response.type === "trade" && response.data && response.data.length > 0) {
+                const latestTrade = response.data[response.data.length - 1];
+                const currentPrice = latestTrade.p;
+                displayPrice.innerText = currentPrice.toFixed(2);
+                if (previousPrice != null) {
+                    flashColorForPriceChange(currentPrice, previousPrice);
+                }
+                previousPrice = currentPrice;
             }
         }
         catch (e) {
@@ -51,4 +54,16 @@
         unsubscribe(stockSymbol);
         socket.close();
     })
+
+    var flashColorForPriceChange = function (currentPrice, previousPrice) {
+        displayPrice.className = "";
+        void displayPrice.offsetWidth; // Forces DOM reflow to retrigger animation
+        if (currentPrice > previousPrice) {
+            displayPrice.classList.add("price-up");
+        }
+        else {
+            displayPrice.classList.add("price-down");
+        }
+    }
+
 })();
