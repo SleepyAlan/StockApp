@@ -1,0 +1,14 @@
+﻿@model StockApp.ViewModels.StockTrade?
+@{
+  ViewBag.Title = "Home";
+}
+<div class="container card">
+  @if (Model is not null)
+  {
+    
+  }
+  else
+  {
+    <h6 class="alert alert-danger">@ViewBag.Error</h6>
+  }
+</div>
