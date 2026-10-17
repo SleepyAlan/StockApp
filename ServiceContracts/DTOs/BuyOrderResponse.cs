@@ -1,18 +1,14 @@
-﻿namespace ServiceContracts.DTOs;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ServiceContracts.DTOs;
 
 public class BuyOrderResponse
 {
-    //Guid BuyOrderID
-
-    //string StockSymbol
-
-    //string StockName
-
-    //DateTime DateAndTimeOfOrder
-
-    //uint Quantity
-
-    //double Price
-
-    //double TradeAmount
+    public Guid BuyOrderID { get; set; }
+    public string? StockSymbol { get; set; }
+    public string? StockName { get; set; }
+    public DateTime DateAndTimeOfOrder { get; set; }
+    public uint Quantity { get; set; }
+    public double Price { get; set; }
+    public double TradeAmount { get; set; }
 }
