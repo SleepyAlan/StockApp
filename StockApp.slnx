@@ -1,4 +1,8 @@
 <Solution>
+  <Project Path="Entities/Entities.csproj" Id="20fa8ca7-8322-419a-a01e-14716e8905bf" />
   <Project Path="FinnhubServices/FinnhubServices.csproj" Id="35dd8977-fb58-4f1a-b2cb-f01aeb821d4b" />
+  <Project Path="ServiceContracts/ServiceContracts.csproj" Id="0c94ba16-4bd8-475a-a32c-c431785a2077" />
+  <Project Path="Services.Tests/Services.Tests.csproj" Id="e1169f73-8cc9-4957-a95f-1abcc9731420" />
+  <Project Path="Services/Services.csproj" Id="59ac97d5-526c-44d9-ab33-22542f4f4c08" />
   <Project Path="StockApp/StockApp.csproj" />
 </Solution>
