@@ -1,5 +1,5 @@
 ﻿
-class StockSocket {
+export class StockSocket {
     /**
      * @param {string} path
      * @param {object} [handlers]
