@@ -8,12 +8,12 @@ using System.Text.Json;
 
 namespace StockApp.Controllers;
 
-public class Trade : Controller
+public class TradeController : Controller
 {
     private readonly string _defaultStockSymbol;
     private readonly IFinnhubService _service;
 
-    public Trade(
+    public TradeController(
         IFinnhubService finnhubService,
         IOptions<TradingOptions> tradeOptions
         )
