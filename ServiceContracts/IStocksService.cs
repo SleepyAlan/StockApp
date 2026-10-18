@@ -24,7 +24,7 @@ public interface IStocksService
     /// Asynchronously retrieves all buy orders.
     /// </summary>
     /// <returns>A task that results in a list of BuyOrderResponse DTO objects.</returns>
-    Task<List<BuyOrderResponse>> GetBuyOrders();
+    Task<List<BuyOrderResponse>> GetAllBuyOrders();
 
     /// <summary>
     /// Asynchronously retrieves the current sell orders.
@@ -32,5 +32,5 @@ public interface IStocksService
     /// <remarks>The returned list may be empty if no sell orders exist. Exceptions can be thrown for network,
     /// validation, or authorization failures.</remarks>
     /// <returns>A Task that results in a list of SellOrderResponse DTO objects.</returns>
-    Task<List<SellOrderResponse>> GetSellOrders();
+    Task<List<SellOrderResponse>> GetAllSellOrders();
 }
