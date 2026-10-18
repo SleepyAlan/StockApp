@@ -5,21 +5,25 @@ using StockApp.ViewModels;
 using FinnhubServices.Models.BusinessModels;
 using FinnhubServices.Interfaces;
 using System.Text.Json;
+using ServiceContracts;
 
 namespace StockApp.Controllers;
 
 public class TradeController : Controller
 {
     private readonly string _defaultStockSymbol;
-    private readonly IFinnhubService _service;
+    private readonly IFinnhubService _finnhubService;
+    private readonly IStocksService _stockService;
 
     public TradeController(
         IFinnhubService finnhubService,
+        IStocksService stocksService,
         IOptions<TradingOptions> tradeOptions
         )
     {
         _defaultStockSymbol = tradeOptions.Value.DefaultStockSymbol;
-        _service = finnhubService;
+        _finnhubService = finnhubService;
+        _stockService = stocksService;
     }
 
     [Route("trade/{symbol?}")]
@@ -30,8 +34,8 @@ public class TradeController : Controller
         CompanyProfile profile;
         try
         {
-            quote = await _service.GetStockPriceQuote(stockSymbol);
-            profile = await _service.GetCompanyProfile(stockSymbol);
+            quote = await _finnhubService.GetStockPriceQuote(stockSymbol);
+            profile = await _finnhubService.GetCompanyProfile(stockSymbol);
         }
         catch (Exception ex) when
             (ex is HttpRequestException || ex is InvalidOperationException)
