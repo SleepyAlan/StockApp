@@ -1,5 +1,9 @@
-﻿using ServiceContracts;
+﻿using Entities;
+using ServiceContracts;
 using ServiceContracts.DTOs;
+using ServiceContracts.Extensions;
+using Services.Helpers;
+
 
 namespace Services;
 
@@ -13,21 +17,39 @@ public class StocksService : IStocksService
 
     public Task<BuyOrderResponse> CreateBuyOrder(BuyOrderRequest? buyOrderRequest)
     {
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(buyOrderRequest, nameof(buyOrderRequest));
+        ModelValidationHelper.Validate(buyOrderRequest);
+
+        BuyOrder buyOrder = buyOrderRequest.ToBuyOrder();
+
+        //TODO: Swap this with a database in the future
+        buyOrder.BuyOrderID = Guid.NewGuid();
+        _buyOrders.Add(buyOrder.ToBuyOrderResponse());
+        return Task.FromResult(buyOrder.ToBuyOrderResponse());
     }
 
     public Task<SellOrderResponse> CreateSellOrder(SellOrderRequest? sellOrderRequest)
     {
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(sellOrderRequest, nameof(sellOrderRequest));
+        ModelValidationHelper.Validate(sellOrderRequest);
+
+        SellOrder sellOrder = sellOrderRequest.ToSellOrder();
+
+        //TODO: Swap this with a database in the future
+        sellOrder.SellOrderID = Guid.NewGuid();
+        _sellOrders.Add(sellOrder.ToSellOrderResponse());
+        return Task.FromResult(sellOrder.ToSellOrderResponse());
     }
 
     public Task<List<BuyOrderResponse>> GetAllBuyOrders()
     {
-        throw new NotImplementedException();
+        //TODO: Swap this with a database in the future
+        return Task.FromResult(_buyOrders);
     }
 
     public Task<List<SellOrderResponse>> GetAllSellOrders()
     {
-        throw new NotImplementedException();
+        //TODO: Swap this with a database in the future
+        return Task.FromResult(_sellOrders);
     }
 }
