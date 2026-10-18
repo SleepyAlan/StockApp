@@ -1,5 +1,7 @@
 using FinnhubServices.Extensions;
 using StockApp.Options;
+using Services;
+using ServiceContracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,7 @@ if (builder.Environment.IsDevelopment())
 
 builder.Services
     .AddFinnHubServices(builder.Configuration)
+    .AddScoped<IStocksService, StocksService>()
     .Configure<TradingOptions>(
         builder.Configuration.GetSection("TradingOptions"));
 
