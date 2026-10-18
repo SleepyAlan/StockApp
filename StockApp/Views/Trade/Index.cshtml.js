@@ -1,4 +1,4 @@
-import { StockSocket } from '~/js/StockSocket.js';
+import { StockSocket } from '/js/StockSocket.js';
 
 // Connects to proxy websocket and subscribes for updates.
 (function () {
